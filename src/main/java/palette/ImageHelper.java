@@ -28,7 +28,7 @@ public class ImageHelper {
             if (field == null) {
                 return null;
             } else {
-                System.out.println(field.getStringValue());
+                //System.out.println(field.getStringValue());
                 return new SimpleDateFormat("yyyy:MM:dd hh:mm:ss").parse(field.getStringValue());
             }
         }
@@ -37,6 +37,8 @@ public class ImageHelper {
 
     public static String getRandomPixel(final String fileName) throws IOException {
         BufferedImage img = ImageIO.read(new File(fileName));
-        return String.format("#%06X", (0xFFFFFF & img.getRGB((int) Math.random() * img.getWidth(), (int) Math.random() * img.getHeight())))  ;
+        String hex = String.format("#%06X", (0xFFFFFF & img.getRGB((int) (Math.random() * img.getWidth()), (int) (Math.random() * img.getHeight()))));
+        //System.out.println(hex);
+        return hex;
     }
 }

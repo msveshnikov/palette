@@ -19,10 +19,16 @@ public class Search {
 
         File[] matchingFiles = new File(dir).listFiles();
         for (File file : matchingFiles) {
-            myMap.put(ImageHelper.getShotDate(dir + "/" + file.getName()).getTime() % MILLIS_PER_DAY - timePortion, dir + "/" + file.getName());
-            System.out.println(file.getName() + " " + ImageHelper.getShotDate(dir + "/" + file.getName()).toString());
+            Date shotDate = ImageHelper.getShotDate(dir + "/" + file.getName());
+            if (shotDate != null) {
+                long diff = Math.abs(shotDate.getTime() % MILLIS_PER_DAY - timePortion);
+                if (diff > MILLIS_PER_DAY / 2) diff -= MILLIS_PER_DAY / 2;
+                myMap.put(diff, dir + "/" + file.getName());
+                //System.out.println(file.getName() + " " + shotDate.toString());
+            }
         }
-        return myMap.firstEntry().getValue();
-        //String firstOther = myMap.get(myMap.firstKey());
+        System.out.println(myMap.firstKey());
+        System.out.println(myMap.get(myMap.firstKey()));
+        return myMap.get(myMap.firstKey());
     }
 }
