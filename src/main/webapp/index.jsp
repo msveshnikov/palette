@@ -1,26 +1,21 @@
+<%@ page import="palette.ImageHelper" %>
 <%@ page import="java.io.File" %>
-<%@ page import="palette.test" %>
+
 <html>
 
 <head>
     <style>
-
-        colorgrid {
-            display: none;
-        }
-
         .cell {
             float: left;
             border: 20pt white solid;
             width: 200px;
             height: 200px;
         }
-
     </style>
 </head>
 
 <%
-    test.metadataExample(new File("images\\1.jpg"));
+    ImageHelper.metadataExample(new File(getServletConfig().getServletContext().getRealPath("/") + "/images/1.jpg"));
 %>
 
 <body>
@@ -46,7 +41,6 @@
         <td class="cell" style="background-color: #675784;"></td>
     </tr>
 </table>
-<!--End of colorgrid -->
 
 </body>
 </html>
