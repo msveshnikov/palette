@@ -1,5 +1,5 @@
+<%@ page import="palette.Search" %>
 <%@ page import="palette.ImageHelper" %>
-<%@ page import="java.io.File" %>
 
 <html>
 
@@ -14,14 +14,16 @@
     </style>
 </head>
 
-<%
-    ImageHelper.metadataExample(new File(getServletConfig().getServletContext().getRealPath("/") + "/images/1.jpg"));
-%>
 
 <body>
+
+<%
+    String file=Search.getMostClose(getServletConfig().getServletContext().getRealPath("/") + "/images");
+%>
+
 <table id="colorgrid">
     <tr>
-        <td class="cell" style="background-color: #73B9FF;"></td>
+        <td class="cell" style="background-color: <%=ImageHelper.getRandomPixel(file)%>;"></td>
         <td class="cell" style="background-color: #7CFC00;"></td>
         <td class="cell" style="background-color: #40E0D0;"></td>
     </tr>
