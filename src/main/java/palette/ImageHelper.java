@@ -16,6 +16,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ImageHelper {
+    static BufferedImage img;
+    static String file;
+
     public static Date getShotDate(final String fileName) throws ImageReadException,
             IOException, ParseException {
         // get all metadata stored in EXIF format (ie. from JPEG or TIFF).
@@ -36,7 +39,10 @@ public class ImageHelper {
     }
 
     public static String getRandomPixel(final String fileName) throws IOException {
-        BufferedImage img = ImageIO.read(new File(fileName));
+        if (fileName!=file) {
+            img = ImageIO.read(new File(fileName));
+            file=fileName;
+        }
         String hex = String.format("#%06X", (0xFFFFFF & img.getRGB((int) (Math.random() * img.getWidth()), (int) (Math.random() * img.getHeight()))));
         //System.out.println(hex);
         return hex;
