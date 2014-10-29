@@ -26,7 +26,7 @@ public class ImageHelper {
         final IImageMetadata metadata = Sanselan.getMetadata(file);
         if (metadata instanceof JpegImageMetadata) {
             final JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
-            System.out.println("file: " + file.getPath());
+            //System.out.println("file: " + file.getPath());
             final TiffField field = jpegMetadata.findEXIFValue(ExifTagConstants.EXIF_TAG_DATE_TIME_ORIGINAL);
             if (field == null) {
                 return null;

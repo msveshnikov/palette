@@ -18,7 +18,9 @@
 <body>
 
 <%
-    final String file = Search.getMostClose(getServletConfig().getServletContext().getRealPath("/") + "/images");
+    String base = getServletConfig().getServletContext().getRealPath("/");
+    String file = Search.getMostClose(base + "/images");
+    String filebase = "/palette" + file.substring(base.length());
 %>
 
 <table id="colorgrid">
@@ -43,6 +45,14 @@
         <td class="cell" style="background-color: <%=ImageHelper.getRandomPixel(file)%>;"></td>
     </tr>
 </table>
+
+<h3>
+    <%=file%>
+</h3>
+
+<%=ImageHelper.getShotDate(file).toString()%>
+<br>
+<img src="<%=filebase%>" width="800">
 
 </body>
 </html>
