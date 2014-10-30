@@ -16,6 +16,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ImageHelper {
+    static BufferedImage img;
+    static String file;
+
     public static Date getShotDate(final String fileName) throws ImageReadException,
             IOException, ParseException {
         // get all metadata stored in EXIF format (ie. from JPEG or TIFF).
@@ -23,12 +26,12 @@ public class ImageHelper {
         final IImageMetadata metadata = Sanselan.getMetadata(file);
         if (metadata instanceof JpegImageMetadata) {
             final JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
-            System.out.println("file: " + file.getPath());
+            //System.out.println("file: " + file.getPath());
             final TiffField field = jpegMetadata.findEXIFValue(ExifTagConstants.EXIF_TAG_DATE_TIME_ORIGINAL);
             if (field == null) {
                 return null;
             } else {
-                System.out.println(field.getStringValue());
+                //System.out.println(field.getStringValue());
                 return new SimpleDateFormat("yyyy:MM:dd hh:mm:ss").parse(field.getStringValue());
             }
         }
@@ -36,7 +39,12 @@ public class ImageHelper {
     }
 
     public static String getRandomPixel(final String fileName) throws IOException {
-        BufferedImage img = ImageIO.read(new File(fileName));
-        return String.format("#%06X", (0xFFFFFF & img.getRGB((int) Math.random() * img.getWidth(), (int) Math.random() * img.getHeight())))  ;
+        if (fileName!=file) {
+            img = ImageIO.read(new File(fileName));
+            file=fileName;
+        }
+        String hex = String.format("#%06X", (0xFFFFFF & img.getRGB((int) (Math.random() * img.getWidth()), (int) (Math.random() * img.getHeight()))));
+        //System.out.println(hex);
+        return hex;
     }
 }
