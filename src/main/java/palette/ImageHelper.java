@@ -16,8 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ImageHelper {
-    static BufferedImage img;
-    static String file;
+    private static BufferedImage img;
+    private static String file;
 
     public static Date getShotDate(final String fileName) throws ImageReadException,
             IOException, ParseException {
@@ -39,7 +39,7 @@ public class ImageHelper {
     }
 
     public static String getRandomPixel(final String fileName) throws IOException {
-        if (fileName!=file) {
+        if (!fileName.equals(file)) {
             img = ImageIO.read(new File(fileName));
             file=fileName;
         }
