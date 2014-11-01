@@ -14,7 +14,6 @@
     </style>
 </head>
 
-
 <body>
 
 <%
@@ -24,33 +23,19 @@
 %>
 
 <table id="colorgrid">
+    <% for (int i = 0; i < 4; i++) { %>
     <tr>
+        <% for (int j = 0; j < 3; j++) { %>
         <td class="cell" style="background-color: <%=ImageHelper.getRandomPixel(file)%>;"></td>
-        <td class="cell" style="background-color: <%=ImageHelper.getRandomPixel(file)%>;"></td>
-        <td class="cell" style="background-color: <%=ImageHelper.getRandomPixel(file)%>;"></td>
+        <% } %>
     </tr>
-    <tr>
-        <td class="cell" style="background-color: <%=ImageHelper.getRandomPixel(file)%>;"></td>
-        <td class="cell" style="background-color: <%=ImageHelper.getRandomPixel(file)%>;"></td>
-        <td class="cell" style="background-color: <%=ImageHelper.getRandomPixel(file)%>;"></td>
-    </tr>
-    <tr>
-        <td class="cell" style="background-color: <%=ImageHelper.getRandomPixel(file)%>;"></td>
-        <td class="cell" style="background-color: <%=ImageHelper.getRandomPixel(file)%>;"></td>
-        <td class="cell" style="background-color: <%=ImageHelper.getRandomPixel(file)%>;"></td>
-    </tr>
-    <tr>
-        <td class="cell" style="background-color: <%=ImageHelper.getRandomPixel(file)%>;"></td>
-        <td class="cell" style="background-color: <%=ImageHelper.getRandomPixel(file)%>;"></td>
-        <td class="cell" style="background-color: <%=ImageHelper.getRandomPixel(file)%>;"></td>
-    </tr>
+    <% } %>
 </table>
 
 <h3>
-    <%=file%>
+    <%=ImageHelper.getShotDate(file).toString()%>
 </h3>
 
-<%=ImageHelper.getShotDate(file).toString()%>
 <br>
 <img src="<%=filebase%>" width="800">
 
