@@ -32,9 +32,9 @@
     <% } %>
 </table>
 
-<h3>
-    <%=ImageHelper.getShotDate(file).toString()%>
-</h3>
+<%--<h3>--%>
+<%--<%=ImageHelper.getShotDate(file).toString()%>--%>
+<%--</h3>--%>
 
 <br>
 <img src="<%=filebase%>" width="800">
